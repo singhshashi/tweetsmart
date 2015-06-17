@@ -1,0 +1,4 @@
+
+function doSomeThing(){
+    //doSomething
+}
