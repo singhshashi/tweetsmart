@@ -105,13 +105,21 @@ AppDispatcher.register(function(action){
             TweetSmartStore.emitChange();
             break;  
         case TweetSmartActions.TWEETSMART_TWEET: 
-            console.log("Inside store with action" + action.toString());
-            if (action.success)
+            if (action.success === null)
                 {
-                    console.log("In store success");
-                    AppState.tweetstormtext = "";
-                    TweetSmartStore.emitChange();
+                    UIState.tweetbutton ='tweeting';
                 }
+            else if (action.success === true)
+                {
+                    AppState.tweetstormtext = "";
+                    UIState.tweetbutton = 'success';
+                }
+            else if (action.success === false)
+                {
+                    UIState.tweetbutton = 'failure';
+                }
+            TweetSmartStore.emitChange();
+            break;
     }
     
 });

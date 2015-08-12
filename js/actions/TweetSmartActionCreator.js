@@ -20,6 +20,7 @@ var TweetSmartActionCreator = {
     
     tweetsmart: function(tweetstorm,signature){
          console.log("Inside action");
+        AppDispatcher.dispatch({actionType:TweetSmartActions.TWEETSMART_TWEET,success:null});
         TweetSmartAPIUtils.tweetsmart(tweetstorm,signature).then(updateStateOnTweetSuccess, updateStateOnTweetFailed);        
     }
 };

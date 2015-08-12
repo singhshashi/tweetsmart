@@ -3,7 +3,7 @@ var State = {
         tweetstormtext:''
     },
     UIState: {
-        
+        tweetbutton:null
     }
 }
 
