@@ -1,44 +1,56 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
+var TweetSmartActions = require('../constants/TweetSmartActionTypes');
 var TweetSmartConstants = require('../constants/TweetSmartConstants');
 var assign = require('object-assign');
 var Utils = require('../utils/Utils');
 var _ = require('../../node_modules/underscore/underscore');
+var State = require('./State');
+var AppState = State.AppState;
+var UIState = State.UIState;
+
 
 var CHANGE_EVENT = 'change';
-const TWEET_LENGTH = 140;
+//const TWEET_LENGTH = 140;
 const WORD_SEPARATOR = ' ';
-
-var _tweetstormtext = "";
-
-
 
 
 var TweetSmartStore = assign({}, EventEmitter.prototype, {
     
     getTweetStormText: function(){
-        return _tweetstormtext;
+        return AppState.tweetstormtext;
+    },
+    
+    getUIState: function(){
+      return UIState;  
+    },
+    
+    getSignedInSignature: function(){
+      var sig = Utils.getParameterByName('sig');
+        if (sig === null || sig === '')
+            return null;
+        return sig;
     },
     
     getTweetStorm: function(){
         var tweetStorm = [];
-        if (_tweetstormtext.length > 0)
+        if (AppState.tweetstormtext.length > 0)
         {
-            var spaceIndexArr = Utils.getArrayOfIndices(_tweetstormtext,WORD_SEPARATOR);
-            if (Utils.getMaxOfNumberArray(spaceIndexArr) <= TWEET_LENGTH)
+            var spaceIndexArr = Utils.getArrayOfIndices(AppState.tweetstormtext,WORD_SEPARATOR);
+            if (Utils.getMaxOfNumberArray(spaceIndexArr) <= TweetSmartConstants.TWEET_LENGTH)
             {
-                tweetStorm.push({key:0,text:_tweetstormtext});
+                tweetStorm.push({key:0,text:AppState.tweetstormtext});
             }
             else{
                     var splitPoints = [];
                     splitPoints.push(0);//initialize with 0 which is used later when splitting using substr
                     var i;
-                    var possibleNumberOfTweets = Math.floor(_tweetstormtext.length/TWEET_LENGTH);
+                    var possibleNumberOfTweets = Math.floor(AppState.tweetstormtext.length/TweetSmartConstants.TWEET_LENGTH);
 
                     var index = 0;
                     while(index != null)
                         {
-                            var neighbours = Utils.getNeighboursInSortedNumberArray(spaceIndexArr, index + TWEET_LENGTH);
+                            var neighbours = Utils.getNeighboursInSortedNumberArray(spaceIndexArr, index + TweetSmartConstants.TWEET_LENGTH);
                             if (neighbours.rightSideNeighbour == null)
                                 {
                                     index = null;
@@ -56,7 +68,7 @@ var TweetSmartStore = assign({}, EventEmitter.prototype, {
                     for (i = 0; i < limit; i++) {
                         if(isNaN(splitPoints[i+1]))
                             {
-                                splitPointPairs.push({start:splitPoints[i],length:_tweetstormtext.length - splitPoints[i]});
+                                splitPointPairs.push({start:splitPoints[i],length:AppState.tweetstormtext.length - splitPoints[i]});
                             }
                         else{
                             splitPointPairs.push({start:splitPoints[i],length: splitPoints[i+1] - splitPoints[i]});                            
@@ -66,7 +78,7 @@ var TweetSmartStore = assign({}, EventEmitter.prototype, {
 //                console.log(splitPointPairs);
                     
                     _.each(splitPointPairs, function(splitPointPair,index){
-                        tweetStorm.push({key:index,text:_tweetstormtext.substr(splitPointPair.start,splitPointPair.length)});
+                        tweetStorm.push({key:index,text:AppState.tweetstormtext.substr(splitPointPair.start,splitPointPair.length)});
                     });                
             }            
         }        
@@ -88,10 +100,18 @@ var TweetSmartStore = assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(action){
     switch(action.actionType) {
-        case TweetSmartConstants.TWEETSMART_COMPOSE: 
-            _tweetstormtext = action.text;
+        case TweetSmartActions.TWEETSMART_COMPOSE: 
+            AppState.tweetstormtext = action.text;
             TweetSmartStore.emitChange();
-            break;    
+            break;  
+        case TweetSmartActions.TWEETSMART_TWEET: 
+            console.log("Inside store with action" + action.toString());
+            if (action.success)
+                {
+                    console.log("In store success");
+                    AppState.tweetstormtext = "";
+                    TweetSmartStore.emitChange();
+                }
     }
     
 });

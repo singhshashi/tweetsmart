@@ -1,13 +1,16 @@
 //This is the "Controller-View"
 var ComposeBox = require('./ComposeBox.react');
 var DisplayTweets = require('./DisplayTweets.react');
+var TweetButton = require('./TweetButton.react');
 var React = require('react');
 var TweetSmartStore = require('../stores/TweetSmartStore');
 
 function getTweetSmartState(){
     return {
         tweetStorm: TweetSmartStore.getTweetStorm(), 
-        tweetStormText: TweetSmartStore.getTweetStormText()
+        tweetStormText: TweetSmartStore.getTweetStormText(), 
+        signedInSignature: TweetSmartStore.getSignedInSignature(),
+        uiState: TweetSmartStore.getUIState()
     };
 }
 
@@ -29,15 +32,15 @@ var TweetSmartApp = React.createClass({
     render: function(){
         return (
             <div>
-              <ComposeBox tweetStormText={this.state.tweetStormText} />
-              <DisplayTweets tweetStorm={this.state.tweetStorm} />
+              <ComposeBox tweetStormText={this.state.tweetStormText} ref='composeBox' />
+              <DisplayTweets tweetStorm={this.state.tweetStorm} ref='displayTweets' />
+              <TweetButton signedInSignature={this.state.signedInSignature} ref='tweetButton' />
             </div>
         );
     }, 
     
     _onChange: function(){
         this.setState(getTweetSmartState());
-        console.log(this.state);
     }
 });
 
