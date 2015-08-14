@@ -8,7 +8,6 @@ var TweetButton = React.createClass({
     
         var signedIn = this.props.signedInSignature != null;
         var uiState = this.props.uiState;
-        console.log(uiState);
         if (signedIn === true)
             {
                 if (uiState === 'tweeting')
@@ -33,7 +32,7 @@ var TweetButton = React.createClass({
         return(<div className='col-md-3'><a className='btn btn-block btn-social btn-twitter col-md-2' id='btnAction' href="http://9750702f.ngrok.io/twitter/connect">Sign in with Twitter</a></div>);
     }, 
         
-    _onClick:function(){        
+    _onClick:function(){     
         TweetSmartActionCreator.tweetsmart(this.props.tweetStorm,this.props.signedInSignature);
     },
     

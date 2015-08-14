@@ -3,7 +3,8 @@ var cookieParser=require('cookie-parser');
 var session=require('express-session');
 var TweetSmartHandlers = require('./handlers/TweetSmartHandlers');
 var routes = require('./Routes');
-
+var bodyParser = require('body-parser');
+//var multer = require('multer');
 
 var api = express();
 
@@ -16,6 +17,11 @@ api.use(session({
     saveUninitialized: true,
     resave: false
 }));
+
+api.use(bodyParser.json());
+api.use(bodyParser.urlencoded({extended:true})); 
+//api.use(multer());
+
 
 api.use(function(req,res, next){
    res.header("Access-Control-Allow-Origin","http://tweetsmart.local") ;

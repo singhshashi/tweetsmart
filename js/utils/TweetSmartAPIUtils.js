@@ -9,9 +9,10 @@ var TweetSmartAPIUtils = {
             request({
             url:Constants.BASE_API_URL+'tweetsmart', 
             method:'POST', 
-            form:{
+            body:{
                 tweetstorm: tweetstorm
             }, 
+            json: true,
             headers:{
                 'sig':signature
             }

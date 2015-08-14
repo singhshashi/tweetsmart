@@ -83,6 +83,7 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
                     console.log(sig2,sig, sig.toString()===sig2.toString());
                     if (sig.toString() === sig2.toString())
                         {
+//                            TODO: use req.body to fetch tweets and then POST to twitter api in a schecduled manner console.log(req.body);
                             res.send('success!')        
                             
                         }

@@ -6,7 +6,6 @@ var React = require('react');
 var TweetSmartStore = require('../stores/TweetSmartStore');
 
 function getTweetSmartState(){
-    console.log(TweetSmartStore.getUIState());
     return {
         tweetStorm: TweetSmartStore.getTweetStorm(), 
         tweetStormText: TweetSmartStore.getTweetStormText(), 
@@ -35,7 +34,7 @@ var TweetSmartApp = React.createClass({
             <div>
               <ComposeBox tweetStormText={this.state.tweetStormText} ref='composeBox' />
               <DisplayTweets tweetStorm={this.state.tweetStorm} ref='displayTweets' />
-              <TweetButton signedInSignature={this.state.signedInSignature} uiState={this.state.uiState.tweetbutton} ref='tweetButton' />
+              <TweetButton signedInSignature={this.state.signedInSignature} uiState={this.state.uiState.tweetbutton} tweetStorm={this.state.tweetStorm} ref='tweetButton' />
             </div>
         );
     }, 
