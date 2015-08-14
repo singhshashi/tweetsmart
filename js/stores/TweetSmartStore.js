@@ -120,6 +120,10 @@ AppDispatcher.register(function(action){
                 }
             TweetSmartStore.emitChange();
             break;
+        case TweetSmartActions.REFRESH_AFTER_SUCCESS:
+             UIState.tweetbutton = null;
+             TweetSmartStore.emitChange();
+            break;
     }
     
 });

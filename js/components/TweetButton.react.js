@@ -21,12 +21,16 @@ var TweetButton = React.createClass({
                         );
                     }
                 else{
+                        if (uiState === 'success')
+                            {
+                                setTimeout(TweetSmartActionCreator.refreshAfterSuccess, 3500);
+                            }
                         return(<div className='col-md-3'><a className='btn btn-block btn-twitter col-md-2' id='btnAction' onClick={this._onClick}>Tweet</a><p>{this.getStatusText()}</p></div>);
                 }
                 
             }
         
-        return(<div className='col-md-3'><a className='btn btn-block btn-social btn-twitter col-md-2' id='btnAction' href="http://4d0cc789.ngrok.io/twitter/connect">Sign in with Twitter</a></div>);
+        return(<div className='col-md-3'><a className='btn btn-block btn-social btn-twitter col-md-2' id='btnAction' href="http://9750702f.ngrok.io/twitter/connect">Sign in with Twitter</a></div>);
     }, 
         
     _onClick:function(){        
