@@ -3,6 +3,8 @@ var Flutter = require('flutter');
 var assign = require('object-assign');
 var EventEmitter = require('events').EventEmitter;
 var Constants = require('../../constants/TweetSmartConstants');
+var _ = require('../../../node_modules/underscore/underscore');
+
 
 var client = redis.createClient();
 
@@ -33,7 +35,7 @@ var flutter = new Flutter({
             return;
         }
         else{
-            console.log(req.ip);
+            console.log(req);
             
             var userDetails = saveUserDetailsAndAccessToken(req);
            
@@ -83,8 +85,37 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
                     console.log(sig2,sig, sig.toString()===sig2.toString());
                     if (sig.toString() === sig2.toString())
                         {
-//                            TODO: use req.body to fetch tweets and then POST to twitter api in a schecduled manner console.log(req.body);
-                            res.send('success!')        
+
+                            var tweetStorm = req.body.tweetstorm;                    
+//                            Get access token and secret for current user
+                            client.get(userId.toString(), function(error,reply){
+                                console.log(reply);
+                                var userDetailsCached = JSON.parse(reply);
+                                _.each(tweetStorm,function(element,index,array){
+                                    //The body param has to be an object as underlying oauth api expects it that way
+                                    var body = {status: element.text};
+                                    
+                                    flutter.API.post('statuses/update.json', userDetailsCached.accessToken, userDetailsCached.secret, body, 'application/x-www-form-urlencoded', function(err,resp){
+                                        console.log("Inside callback");
+                                        console.log(err);
+                                        console.log(resp);
+                                        if (err){
+                                            console.log("Sending failure as response");
+                                                  res.send("Failure!");
+                                        }
+                                        else{
+                                            console.log("Sending success as response");
+                                                  res.send("Success!");
+                                        }
+                                    } );                   
+                                });
+                                
+                          
+
+                            });
+                            
+                            
+                            
                             
                         }
                     else{

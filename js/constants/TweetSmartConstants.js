@@ -1,5 +1,5 @@
 
 module.exports = {
-    BASE_API_URL:'https://9750702f.ngrok.io/', 
+    BASE_API_URL:'https://8b2355bf.ngrok.io/', 
     TWEET_LENGTH:140
 }

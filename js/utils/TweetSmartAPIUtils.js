@@ -1,10 +1,17 @@
 var request = require('request');
 var Constants = require('../constants/TweetSmartConstants');
+var _ = require('../../node_modules/underscore/underscore');
 
 var TweetSmartAPIUtils = {
     
     tweetsmart: function(tweetstorm,signature){
 
+        _.each(tweetstorm,function(element,index,list){
+            delete element.key; 
+        })
+        
+        console.log(tweetstorm);
+        
         return new Promise(function(fulfill,reject){
             request({
             url:Constants.BASE_API_URL+'tweetsmart', 
