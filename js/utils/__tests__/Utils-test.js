@@ -22,6 +22,16 @@ describe('UtilsTests', function(){
         
     });
     
+      it('returns array with correct count of spaces',function(){
+        var result = Utils.getArrayOfIndices("Hinduism is an ancient spiritual tradition of the people who inhabited the land between the Himalayas and the Indus river basin. It is not a religion but a way of life.", ' ');
+        expect(result.length).toBe(30);
+        expect(result[0]).toBe(8);
+        expect(result[24]).toBe(140);
+        expect(result[25]).toBe(149);
+
+        
+    });
+    
     
     it('returns correct neighbours',function(){
 
@@ -50,6 +60,18 @@ describe('UtilsTests', function(){
         result = Utils.getNeighboursInSortedNumberArray(arr,190);
         expect(result.leftSideNeighbour).toBe(null);
         expect(result.rightSideNeighbour).toBe(null);
+        
+        result = Utils.getNeighboursInSortedNumberArray(arr,110);
+        expect(result.leftSideNeighbour).toBe(98);
+        expect(result.rightSideNeighbour).toBe(125);
+
+
+
+
+
+
+
+
 
     });
 

@@ -77,9 +77,17 @@ var Utils = {
         var diffProd = diff1*diff2;
         if (diffProd === 0 || Number.isNaN(diff1) || Number.isNaN(diff2))
             {
-                neighbours.leftSideNeighbour = null;
-                neighbours.rightSideNeighbour = null;
-                return neighbours;
+                if (diff1 === 0 || diff2 === 0)
+                    {
+                        var numIndex = array.indexOf(num);
+                        neighbours.leftSideNeighbour = array[numIndex - 1];
+                        neighbours.rightSideNeighbour = array[numIndex + 1];
+                    }
+                else{
+                    neighbours.leftSideNeighbour = null;
+                    neighbours.rightSideNeighbour = null;                     
+                }
+               return neighbours;
             }
         else if ((diffProd) < 0 )
             {
