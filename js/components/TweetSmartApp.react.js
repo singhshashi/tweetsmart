@@ -4,11 +4,14 @@ var DisplayTweets = require('./DisplayTweets.react');
 var TweetButton = require('./TweetButton.react');
 var React = require('react');
 var TweetSmartStore = require('../stores/TweetSmartStore');
+var TweetSmartActionCreator = require('../actions/TweetSmartActionCreator');
+var _ = require('../../node_modules/underscore/underscore');
+
 
 function getTweetSmartState(){
     return {
+        appState: TweetSmartStore.getAppState(),
         tweetStorm: TweetSmartStore.getTweetStorm(), 
-        tweetStormText: TweetSmartStore.getTweetStormText(), 
         signedInSignature: TweetSmartStore.getSignedInSignature(),
         uiState: TweetSmartStore.getUIState()
     };
@@ -29,10 +32,36 @@ var TweetSmartApp = React.createClass({
         TweetSmartStore.removeChangeListener(this._onChange);
     },
     
+    componentDidUpdate: function(prevProps, prevState)
+    {
+        if (this.state.appState.queuedtweets.length > 0){
+            console.log(this.state.appState.queuedtweets);
+            var unsuccessfulTweet = _.find(this.state.appState.queuedtweets, function(queuedtweet){
+                return queuedtweet.status == -1;
+            });
+            
+            if (unsuccessfulTweet)
+                {
+                    return;
+                }
+            
+            var toTweet = _.find(this.state.appState.queuedtweets, function(queuedtweet){
+                return queuedtweet.status == 0;
+            });
+            if (toTweet)
+                {
+                    TweetSmartActionCreator.tweet(toTweet, this.state.signedInSignature);                    
+                }
+            else{
+                TweetSmartActionCreator.tweetstormsuccess();
+            }
+        }
+    },
+    
     render: function(){
         return (
             <div>
-              <ComposeBox tweetStormText={this.state.tweetStormText} ref='composeBox' />
+              <ComposeBox tweetStormText={this.state.appState.tweetstormtext} uiState={this.state.uiState.composebox} ref='composeBox' />
               <DisplayTweets tweetStorm={this.state.tweetStorm} ref='displayTweets' />
               <TweetButton signedInSignature={this.state.signedInSignature} uiState={this.state.uiState.tweetbutton} tweetStorm={this.state.tweetStorm} ref='tweetButton' />
             </div>

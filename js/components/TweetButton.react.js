@@ -29,11 +29,11 @@ var TweetButton = React.createClass({
                 
             }
         
-        return(<div className='col-md-3'><a className='btn btn-block btn-social btn-twitter col-md-2' id='btnAction' href="http://8b2355bf.ngrok.io/twitter/connect">Sign in with Twitter</a></div>);
+        return(<div className='col-md-3'><a className='btn btn-block btn-social btn-twitter col-md-2' id='btnAction' href="http://bf331f18.ngrok.io/twitter/connect">Sign in with Twitter</a></div>);
     }, 
         
     _onClick:function(){     
-        TweetSmartActionCreator.tweetsmart(this.props.tweetStorm,this.props.signedInSignature);
+        TweetSmartActionCreator.queuetweetstorm(this.props.tweetStorm,this.props.signedInSignature);
     },
     
     getStatusText: function(){

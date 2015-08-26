@@ -17,8 +17,8 @@ const WORD_SEPARATOR = ' ';
 
 var TweetSmartStore = assign({}, EventEmitter.prototype, {
     
-    getTweetStormText: function(){
-        return AppState.tweetstormtext;
+    getAppState: function(){
+        return AppState;
     },
     
     getUIState: function(){
@@ -33,6 +33,11 @@ var TweetSmartStore = assign({}, EventEmitter.prototype, {
     },
     
     getTweetStorm: function(){
+        if (AppState.queuedtweets.length > 0)
+            {
+                return AppState.queuedtweets;
+            }
+        
         var tweetStorm = [];
         if (AppState.tweetstormtext.length > 0)
         {
@@ -100,24 +105,44 @@ var TweetSmartStore = assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(action){
     switch(action.actionType) {
-        case TweetSmartActions.TWEETSMART_COMPOSE: 
+        case TweetSmartActions.COMPOSE: 
             AppState.tweetstormtext = action.text;
             TweetSmartStore.emitChange();
             break;  
-        case TweetSmartActions.TWEETSMART_TWEET: 
-            if (action.success === null)
-                {
-                    UIState.tweetbutton ='tweeting';
-                }
-            else if (action.success === true)
-                {
-                    AppState.tweetstormtext = "";
-                    UIState.tweetbutton = 'success';
-                }
-            else if (action.success === false)
-                {
-                    UIState.tweetbutton = 'failure';
-                }
+        case TweetSmartActions.QUEUE_TWEETSTORM:
+            _.each(action.tweetstorm, function(element, index){
+                AppState.queuedtweets.push({key: element.key, text:element.text, status: 0});
+            })
+            UIState.composebox = false;
+            UIState.tweetbutton = 'tweeting';
+            TweetSmartStore.emitChange();
+            break;
+        case TweetSmartActions.TWEET_SUCCESS:
+            var successfulTweet = _.find(AppState.queuedtweets, function(twt){
+                return twt.status == 0;
+            });
+            successfulTweet.status = 1;
+            console.log(AppState.queuedtweets);
+            setTimeout(function(){TweetSmartStore.emitChange()}, 4500);
+            break;
+        case TweetSmartActions.TWEET_FAILURE:
+            var unsuccesfulTweet = _.find(AppState.queuedtweets, function(twt){
+               return twt.status == 0; 
+            });
+            unsuccesfulTweet.status = -1;
+            UIState.tweetbutton = 'failure';
+            TweetSmartStore.emitChange();
+            break;
+        case TweetSmartActions.TWEETSTORM_SUCCESS:
+            UIState.composebox = true;
+            UIState.tweetbutton = 'success';
+            AppState.tweetstormtext = '';
+            AppState.queuedtweets = [];
+            TweetSmartStore.emitChange();
+            break;
+        case TweetSmartActions.TWEETSTORM_FAILURE:
+            UIState.composebox = false;
+            UIState.tweetbutton = 'failure';
             TweetSmartStore.emitChange();
             break;
         case TweetSmartActions.REFRESH_AFTER_SUCCESS:

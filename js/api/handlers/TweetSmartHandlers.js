@@ -86,31 +86,24 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
                     if (sig.toString() === sig2.toString())
                         {
 
-                            var tweetStorm = req.body.tweetstorm;                    
+                            var tweet = req.body.tweet;                    
 //                            Get access token and secret for current user
                             client.get(userId.toString(), function(error,reply){
-                                console.log(reply);
+//                                console.log(reply);
                                 var userDetailsCached = JSON.parse(reply);
-                                _.each(tweetStorm,function(element,index,array){
-                                    //The body param has to be an object as underlying oauth api expects it that way
-                                    var body = {status: element.text};
-                                    
-                                    flutter.API.post('statuses/update.json', userDetailsCached.accessToken, userDetailsCached.secret, body, 'application/x-www-form-urlencoded', function(err,resp){
-                                        console.log("Inside callback");
-                                        console.log(err);
+                                //The body parameter has to be an object as the underlying Oauth library expects so. 
+                                    var payload = {status: tweet.text};
+                                    console.log(tweet);
+                                    flutter.API.post('statuses/update.json', userDetailsCached.accessToken, userDetailsCached.secret, payload, 'application/x-www-form-urlencoded', function(resp){
                                         console.log(resp);
-                                        if (err){
-                                            console.log("Sending failure as response");
-                                                  res.send("Failure!");
+                                        if (resp.created_at){
+                                            res.send('Success!');
                                         }
                                         else{
-                                            console.log("Sending success as response");
-                                                  res.send("Success!");
+                                            res.status(500).send("Failure!");
                                         }
-                                    } );                   
-                                });
-                                
-                          
+                                        
+                                    } );                         
 
                             });
                             

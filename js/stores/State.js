@@ -1,9 +1,11 @@
 var State = {
     AppState: {
-        tweetstormtext:''
+        tweetstormtext:'', 
+        queuedtweets:[]
     },
     UIState: {
-        tweetbutton:null
+        tweetbutton:null,
+        composebox: true 
     }
 }
 

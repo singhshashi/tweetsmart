@@ -9,7 +9,7 @@ var DisplayTweets = React.createClass({
             var tweets = [];
             for (var key in tweetStorm)
                 {
-                    tweets.push(<Tweet key={key} text={tweetStorm[key].text} />)        
+                    tweets.push(<Tweet key={key} text={tweetStorm[key].text} status={tweetStorm[key].status} />)        
                 }
             
             return (<ul id="tweetList" className="list-group">

@@ -4,24 +4,35 @@ var TweetSmartConstants = require('../constants/TweetSmartConstants');
 var TweetSmartAPIUtils = require('../utils/TweetSmartAPIUtils');
 
 var updateStateOnTweetSuccess = function(data){
-    AppDispatcher.dispatch({actionType:TweetSmartActions.TWEETSMART_TWEET, success: true});
+    AppDispatcher.dispatch({actionType:TweetSmartActions.TWEET_SUCCESS});
 }
 
 var updateStateOnTweetFailed = function(data){
-    AppDispatcher.dispatch({actionType:TweetSmartActions.TWEETSMART_TWEET, success: false});
+    AppDispatcher.dispatch({actionType:TweetSmartActions.TWEET_FAILURE});
 }
 
 var TweetSmartActionCreator = {
     
     compose: function(text){
-        var action = {actionType: TweetSmartActions.TWEETSMART_COMPOSE, text: text};
+        var action = {actionType: TweetSmartActions.COMPOSE, text: text};
         AppDispatcher.dispatch(action);        
     }, 
     
-    tweetsmart: function(tweetstorm,signature){
-         console.log("Inside action");
-        AppDispatcher.dispatch({actionType:TweetSmartActions.TWEETSMART_TWEET,success:null});
-        TweetSmartAPIUtils.tweetsmart(tweetstorm,signature).then(updateStateOnTweetSuccess, updateStateOnTweetFailed);        
+    queuetweetstorm: function(tweetstorm){
+        AppDispatcher.dispatch({actionType:TweetSmartActions.QUEUE_TWEETSTORM, tweetstorm: tweetstorm});
+    },
+    
+    tweet: function(tweet,signature){
+        AppDispatcher.dispatch({actionType:TweetSmartActions.TWEET, tweet:tweet})
+        TweetSmartAPIUtils.tweet(tweet,signature).then(updateStateOnTweetSuccess, updateStateOnTweetFailed);        
+    },
+    
+    tweetstormsuccess: function(){
+        AppDispatcher.dispatch({actionType:TweetSmartActions.TWEETSTORM_SUCCESS})
+    },
+    
+    tweetstormfailed: function(){
+        
     },
     
     refreshAfterSuccess: function(){
