@@ -17,12 +17,17 @@ h3,h4 {
     text-align: center; 
     display: inline-block;
     padding: 30px;
-    margin: 50px 0 0 0 !important;
+    margin: 30px 0 0 0 !important;
     letter-spacing: -1px;   
 }
 
 .headline h1{
     font-size: 40px;
+}
+
+.headline img {
+    margin: 0 auto;
+    display: block;
 }
 
 #headline-inner-div {
