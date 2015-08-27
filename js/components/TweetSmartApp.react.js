@@ -2,6 +2,7 @@
 var ComposeBox = require('./ComposeBox.react');
 var DisplayTweets = require('./DisplayTweets.react');
 var TweetButton = require('./TweetButton.react');
+var OptionsBox = require('./OptionsBox.react');
 var React = require('react');
 var TweetSmartStore = require('../stores/TweetSmartStore');
 var TweetSmartActionCreator = require('../actions/TweetSmartActionCreator');
@@ -61,7 +62,12 @@ var TweetSmartApp = React.createClass({
     render: function(){
         return (
             <div>
-              <ComposeBox tweetStormText={this.state.appState.tweetstormtext} uiState={this.state.uiState.composebox} ref='composeBox' />
+              <form>
+                <div className="form-group">    
+                    <ComposeBox tweetStormText={this.state.appState.tweetstormtext} uiState={this.state.uiState.composebox} ref='composeBox' />
+                    <OptionsBox numberingPositionAtStart={this.state.appState.numberingpositionatstart} ref='optionsBox' />
+                </div>
+              </form>
               <DisplayTweets tweetStorm={this.state.tweetStorm} ref='displayTweets' />
               <TweetButton signedInSignature={this.state.signedInSignature} uiState={this.state.uiState.tweetbutton} tweetStorm={this.state.tweetStorm} ref='tweetButton' />
             </div>

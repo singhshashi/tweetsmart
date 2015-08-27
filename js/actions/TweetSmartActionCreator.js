@@ -16,7 +16,11 @@ var TweetSmartActionCreator = {
     compose: function(text){
         var action = {actionType: TweetSmartActions.COMPOSE, text: text};
         AppDispatcher.dispatch(action);        
-    }, 
+    },
+    
+    numberingpositionatstart:function(numberingpositionatstart){
+      AppDispatcher.dispatch({actionType:TweetSmartActions.CHANGE_NUMBERING_POSITION, numberingpositionatstart: numberingpositionatstart});  
+    },
     
     queuetweetstorm: function(tweetstorm){
         AppDispatcher.dispatch({actionType:TweetSmartActions.QUEUE_TWEETSTORM, tweetstorm: tweetstorm});

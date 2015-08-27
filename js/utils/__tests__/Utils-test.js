@@ -66,13 +66,6 @@ describe('UtilsTests', function(){
         expect(result.rightSideNeighbour).toBe(125);
 
 
-
-
-
-
-
-
-
     });
 
 

@@ -8,5 +8,6 @@ module.exports = keyMirror({
     TWEET_FAILURE: null,
     TWEETSTORM_SUCCESS:null,
     TWEETSTORM_FAILURE:null,
-    REFRESH_AFTER_SUCCESS: null
+    REFRESH_AFTER_SUCCESS: null,
+    CHANGE_NUMBERING_POSITION: null
 });

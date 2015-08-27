@@ -1,5 +1,6 @@
 var State = {
     AppState: {
+        numberingpositionatstart:true,
         tweetstormtext:'', 
         queuedtweets:[]
     },

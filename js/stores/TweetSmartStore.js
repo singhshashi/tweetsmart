@@ -83,8 +83,17 @@ var TweetSmartStore = assign({}, EventEmitter.prototype, {
 //                console.log(splitPointPairs);
                     
                     _.each(splitPointPairs, function(splitPointPair,index){
-                        tweetStorm.push({key:index,text:AppState.tweetstormtext.substr(splitPointPair.start,splitPointPair.length)});
-                    });                
+                        
+                        var numberedTweet = '';
+                       if (AppState.numberingpositionatstart)
+                       {
+                         numberedTweet = (index + 1).toString() + '/' + this.length + ' ' +                  AppState.tweetstormtext.substr(splitPointPair.start,splitPointPair.length);
+                       }                   
+else{
+      numberedTweet =  AppState.tweetstormtext.substr(splitPointPair.start,splitPointPair.length) + ' ' + (index + 1).toString() + '/' + this.length;
+}
+                        tweetStorm.push({key:index,text:numberedTweet});
+                    },splitPointPairs);                
             }            
         }        
         return tweetStorm;
@@ -148,6 +157,10 @@ AppDispatcher.register(function(action){
         case TweetSmartActions.REFRESH_AFTER_SUCCESS:
              UIState.tweetbutton = null;
              TweetSmartStore.emitChange();
+            break;
+        case TweetSmartActions.CHANGE_NUMBERING_POSITION:
+            AppState.numberingpositionatstart = action.numberingpositionatstart;
+            TweetSmartStore.emitChange();
             break;
     }
     
