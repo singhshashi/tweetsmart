@@ -6,20 +6,24 @@ h3,h4 {
 }
 
 #headline-section {
-    background-image: url(../images/baginiwp3.JPG);
     margin-top: -71px;
     background-position: center;
     background-size: cover;
-    text-align: center;
     min-height: 286px;
     display: block;
 }
 
-#headline{    
+.headline{    
     text-align: center; 
     display: inline-block;
     padding: 30px;
-    margin: 45px 0 0 0 !important;    }
+    margin: 50px 0 0 0 !important;
+    letter-spacing: -1px;   
+}
+
+.headline h1{
+    font-size: 40px;
+}
 
 #headline-inner-div {
     margin: 0 auto;
