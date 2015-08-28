@@ -43,7 +43,6 @@ var TweetSmartDemoApp = React.createClass({
               <form>
                 <div className="form-group">    
                     <ComposeBox tweetStormText={this.state.appState.tweetstormtext} uiState={this.state.uiState.composebox} ref='composeBox' />
-                    <OptionsBox numberingPositionAtStart={this.state.appState.numberingpositionatstart} ref='optionsBox' />
                 </div>
               </form>
               <DisplayTweets tweetStorm={this.state.tweetStorm} ref='displayTweets' />

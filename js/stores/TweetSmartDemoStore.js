@@ -14,7 +14,7 @@ var CHANGE_EVENT = 'change';
 //const TWEET_LENGTH = 140;
 const WORD_SEPARATOR = ' ';
 
-var demo_text = 'Have you ever come across a situation where you wanted to express your opinion about something on twitter, yet did not know how many tweets it would take to do so? You started off by numbering your tweets 1/n, 2/n .. only to realize the value of n in the last tweet. Numbering your tweets correctly from the beginning requires effort. Which is why I made this simple app to help compose numbered tweet storms. I hope you do know that a series of quick successive tweets is known as a Tweet Storm! ';
+var demo_text = 'I am Daenerys Stormborn of the House Targaryen, the First of Her Name, the Unburnt, Queen of Meereen, Queen of the Andals and the Rhoynar and the First Men, Khaleesi of the Great Grass Sea, Breaker of Chains, and Mother of Dragons. ';
 var index = 0;
 
 var textafternextletter = function(){
