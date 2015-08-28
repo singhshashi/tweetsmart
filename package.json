@@ -27,7 +27,9 @@
     "watchify": "^2.1.1"
   },
   "scripts": {
-    "start": "watchify -o js/bundle.js -v -d js/app.js",
+    "build-demo":"watchify -o js/demobundle.js -v -d js/demoapp.js",
+    "build-app":"watchify -o js/bundle.js -v -d js/app.js",
+    "start": "npm run build-demo | npm run build-app",
     "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/app.min.js",
     "test": "jest"
   },

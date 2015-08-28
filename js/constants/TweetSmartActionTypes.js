@@ -9,5 +9,6 @@ module.exports = keyMirror({
     TWEETSTORM_SUCCESS:null,
     TWEETSTORM_FAILURE:null,
     REFRESH_AFTER_SUCCESS: null,
-    CHANGE_NUMBERING_POSITION: null
+    CHANGE_NUMBERING_POSITION: null,
+    DEMO_COMPOSE: null
 });

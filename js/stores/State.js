@@ -2,7 +2,7 @@ var State = {
     AppState: {
         numberingpositionatstart:true,
         tweetstormtext:'', 
-        queuedtweets:[]
+        queuedtweets:[],        
     },
     UIState: {
         tweetbutton:null,

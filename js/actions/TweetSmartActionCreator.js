@@ -41,6 +41,10 @@ var TweetSmartActionCreator = {
     
     refreshAfterSuccess: function(){
         AppDispatcher.dispatch({actionType:TweetSmartActions.REFRESH_AFTER_SUCCESS});
+    },
+    
+    democompose: function(){
+        AppDispatcher.dispatch({actionType:TweetSmartActions.DEMO_COMPOSE})
     }
 };
 
