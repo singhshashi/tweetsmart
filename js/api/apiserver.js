@@ -24,7 +24,7 @@ api.use(bodyParser.urlencoded({extended:true}));
 
 
 api.use(function(req,res, next){
-   res.header("Access-Control-Allow-Origin","http://tweetsmart.local") ;
+   res.header("Access-Control-Allow-Origin","http://tweetsmart.in") ;
    res.header("Access-Control-Allow-Headers","Origin,X-Requested-With,Content-Type,Accept,sig");
    res.header("Access-Control-Allow-Credentials","true");
    next();

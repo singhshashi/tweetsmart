@@ -43,7 +43,7 @@ var flutter = new Flutter({
             
             var sig = ip.split('.').reduce(function(previous,current,index,array){return (new Number(previous) + new Number(current))}) * userDetails.userID;
             client.set(sig.toString(),userDetails.userID.toString());            
-            res.redirect('http://tweetsmart.local/popup.html?sig='+sig.toString());                 
+            res.redirect('http://tweetsmart.in/popup.html?sig='+sig.toString());                 
         }
 		
 	}
@@ -112,7 +112,7 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
                             
                         }
                     else{
-                        res.redirect('http://tweetsmart.local/login')
+                        res.redirect('http://tweetsmart.in/login')
                     }
                     
                 }
