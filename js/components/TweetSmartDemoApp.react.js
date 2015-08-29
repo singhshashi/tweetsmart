@@ -1,7 +1,6 @@
 //This is the "Controller-View" for the Demo app
 var ComposeBox = require('./ComposeBox.react');
 var DisplayTweets = require('./DisplayTweets.react');
-var OptionsBox = require('./OptionsBox.react');
 var React = require('react');
 var TweetSmartDemoStore = require('../stores/TweetSmartDemoStore');
 var TweetSmartActionCreator = require('../actions/TweetSmartActionCreator');

@@ -2,7 +2,6 @@
   "name": "tweetsmart",
   "version": "0.0.1",
   "description": "Tweet smarter by easily numbering all your tweets of a tweetstorm",
-  "main": "js/app.js",
   "dependencies": {
     "body-parser": "^1.13.3",
     "cookie-parser": "^1.3.5",
@@ -27,17 +26,19 @@
     "watchify": "^2.1.1"
   },
   "scripts": {
-    "build-demo":"watchify -o js/demobundle.js -v -d js/demoapp.js",
-    "build-app":"watchify -o js/bundle.js -v -d js/app.js",
-    "start": "npm run build-demo | npm run build-app",
-    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/app.min.js",
+    "watch-demoapp":"watchify js/demoapp.js -o 'uglifyjs -cm  > demobundle.min.js' -v -d",
+    "watch-app":"watchify js/app.js -o 'uglifyjs -cm  > bundle.min.js' -v -d",
+    "sat": "npm run watch-demoapp | npm run watch-app",
+    "build-demoapp":"browserify js/demoapp.js -t [envify --NODE_ENV production] | uglifyjs -cm > bin/demobundle.min.js",
+    "build-app":"browserify js/app.js -t [envify --NODE_ENV production] | uglifyjs -cm > bin/bundle.min.js",
+    "start": "npm run build-app | npm run build-demoapp",
     "test": "jest"
   },
   "author": "Shashi Singh",
   "browserify": {
     "transform": [
       "reactify",
-      "envify"
+      "envify"      
     ]
   },
   "jest": {
