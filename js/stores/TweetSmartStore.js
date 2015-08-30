@@ -119,6 +119,7 @@ AppDispatcher.register(function(action){
             TweetSmartStore.emitChange();
             break;  
         case TweetSmartActions.QUEUE_TWEETSTORM:
+            AppState.queuedtweets = [];
             _.each(action.tweetstorm, function(element, index){
                 AppState.queuedtweets.push({key: element.key, text:element.text, status: 0});
             })
