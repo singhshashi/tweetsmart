@@ -35,7 +35,6 @@ var flutter = new Flutter({
             return;
         }
         else{
-            console.log(req);
             
             var userDetails = saveUserDetailsAndAccessToken(req);
            
@@ -75,14 +74,13 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
             if (reply != null)
                 {
                     var userId = new Number(reply);
-                    console.log(userId);
                     if (Number.isNaN(userId))
                         {
+                            console.log("UserId from redis in NaN");
                             throw "UserId from redis is NaN";    
                         }
                         
                     var sig2 = (req.ip.split('.').reduce(function(previous,current,index,array){ return (new Number(previous) + new Number(current))}) * userId);
-                    console.log(sig2,sig, sig.toString()===sig2.toString());
                     if (sig.toString() === sig2.toString())
                         {
 
@@ -93,7 +91,6 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
                                 var userDetailsCached = JSON.parse(reply);
                                 //The body parameter has to be an object as the underlying Oauth library expects so. 
                                     var payload = {status: tweet.text};
-                                    console.log(tweet);
                                     flutter.API.post('statuses/update.json', userDetailsCached.accessToken, userDetailsCached.secret, payload, 'application/x-www-form-urlencoded', function(resp){
                                         console.log(resp);
                                         if (resp.created_at){
