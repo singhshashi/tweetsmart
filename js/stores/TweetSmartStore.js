@@ -133,7 +133,7 @@ AppDispatcher.register(function(action){
             });
             successfulTweet.status = 1;
             console.log(AppState.queuedtweets);
-            setTimeout(function(){TweetSmartStore.emitChange()}, 4500);
+            setTimeout(function(){TweetSmartStore.emitChange()}, 2500);
             break;
         case TweetSmartActions.TWEET_FAILURE:
             var unsuccesfulTweet = _.find(AppState.queuedtweets, function(twt){

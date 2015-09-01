@@ -24,8 +24,8 @@ function saveUserDetailsAndAccessToken(req){
 }
 
 var flutter = new Flutter({
-	consumerKey:'CsWb5WLmorrDK59KAu5GE0EB1',
-	consumerSecret:'KE8tfPzyaAtlijYfQmn9OH5w2P15cN2HX89wz4L796KvJrV1z5',
+	consumerKey:process.env.TWEETSMART_CONSUMER_KEY,
+	consumerSecret:process.env.TWEETSMART_CONSUMER_SECRET,
 	loginCallback: Constants.BASE_API_URL +'twitter/callback', 
 
 	authCallback: function(req,res,next){
