@@ -4,7 +4,7 @@
     float: none;
 }
 
-#headline-section {
+.headline-section {
     margin-top: -71px;
     background-position: center;
     background-size: cover;
@@ -38,13 +38,22 @@
     max-width: 700px;
 }
 
-
-
 #demo {
     margin:0 auto;
     max-width: 400px;
 }
 
+
+.intro-section{
+    background-color: ghostwhite;
+    text-align: center;
+    padding: 20px 0 20px 60px;    
+}
+
+.ts-example-img{
+    width: 325px;
+    height: 200px;
+}
 
 .pitch {
     margin: 0 auto;
@@ -52,16 +61,25 @@
     text-align: center;
 }
 
-.subheadline{
-background-color: blanchedalmond;
+.upcoming-section{
+    padding: 20px;
 }
 
+.who-am-i-section {
+    padding:20px;
+    background-color: aliceblue;
+}
 .playstoreicon{
-width:200px;
+width:100px;
 }
 
-.chromewebstoreicon{width:250px;}
+.chromewebstoreicon{width:150px;}
 
 #container{
     padding:10px;
 }
+
+footer > div {
+    background-color: aliceblue;
+    padding: 20px;
+    }
