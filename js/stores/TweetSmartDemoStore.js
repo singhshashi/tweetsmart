@@ -14,7 +14,8 @@ var CHANGE_EVENT = 'change';
 //const TWEET_LENGTH = 140;
 const WORD_SEPARATOR = ' ';
 
-var demo_text = 'I am Daenerys Stormborn of the House Targaryen, the First of Her Name, the Unburnt, Queen of Meereen, Queen of the Andals and the Rhoynar and the First Men, Khaleesi of the Great Grass Sea, Breaker of Chains, and Mother of Dragons. ';
+var demo_text = 'I am not a numbered tweet right now as I am alone. But as soon as the core message I am conveying crosses over to the next tweet, you will see that both of us are numbered. And you did not have to even wonder how that was done. Wow that was cool!';
+//I am Daenerys Stormborn of the House Targaryen, the First of Her Name, the Unburnt, Queen of Meereen, Queen of the Andals and the Rhoynar and the First Men, Khaleesi of the Great Grass Sea, Breaker of Chains, and Mother of Dragons. 
 var index = 0;
 
 var textafternextletter = function(){

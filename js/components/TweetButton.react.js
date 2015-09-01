@@ -13,8 +13,8 @@ var TweetButton = React.createClass({
                 if (uiState === 'tweeting')
                     {
                         return(
-                                <div className='col-md-3'>
-                                    <a className='btn btn-block btn-twitter col-md-2' id='btnAction'>Tweeting...</a>
+                                <div className="pull-right">
+                                    <a className='btn btn-twitter' id='btnAction'>Tweeting...</a>
                                     <img alt='loading...' src='../../images/ajax-loader.gif' />
                                 </div>                       
                         );
@@ -24,12 +24,12 @@ var TweetButton = React.createClass({
                             {
                                 setTimeout(TweetSmartActionCreator.refreshAfterSuccess, 3500);
                             }
-                        return(<div className='col-md-3'><a className='btn btn-block btn-twitter col-md-2' id='btnAction' onClick={this._onClick}>Tweet</a><p>{this.getStatusText()}</p></div>);
+                        return(<div className="pull-right"><a className='btn btn-twitter' id='btnAction' onClick={this._onClick}>Tweet</a><p>{this.getStatusText()}</p></div>);
                 }
                 
             }
         
-        return(<div className='col-md-3'><a className='btn btn-block btn-social btn-twitter col-md-2' id='btnAction' href="http://api.tweetsmart.in/twitter/connect">Sign in with Twitter</a></div>);
+        return(<div className="pull-right"><a className='btn btn-social btn-twitter' id='btnAction' href="http://api.tweetsmart.in/twitter/connect"><i className="fa fa-twitter"></i>Sign in with Twitter</a></div>);
     }, 
         
     _onClick:function(){     

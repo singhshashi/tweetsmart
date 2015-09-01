@@ -12,9 +12,17 @@ var DisplayTweets = React.createClass({
                     tweets.push(<Tweet key={key} text={tweetStorm[key].text} status={tweetStorm[key].status} />)        
                 }
             
-            return (<ul id="tweetList" className="list-group">
-                        {tweets}
-                   </ul>);
+            if (tweets.length > 0)
+                {
+                    return (<ul id="tweetList" className="list-group">
+                            {tweets}
+                    </ul>);            
+                }
+            else
+                {
+                    return (<p className="bg-warning"> No tweets to display! </p>);                        
+                }
+            
         }
     });
 
