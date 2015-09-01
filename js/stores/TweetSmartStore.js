@@ -116,6 +116,9 @@ AppDispatcher.register(function(action){
     switch(action.actionType) {
         case TweetSmartActions.COMPOSE: 
             AppState.tweetstormtext = action.text;
+            console.log('AppState.tweetstormtext: '+ AppState.tweetstormtext);
+            localStorage.setItem('tweetstormtext', AppState.tweetstormtext);
+            console.log('LocalStorage: ' + localStorage.getItem('tweetstormtext'));
             TweetSmartStore.emitChange();
             break;  
         case TweetSmartActions.QUEUE_TWEETSTORM:

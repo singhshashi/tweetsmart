@@ -1,7 +1,7 @@
 var State = {
     AppState: {
         numberingpositionatstart:true,
-        tweetstormtext:'', 
+        tweetstormtext:localStorage.getItem('tweetstormtext') != null ? localStorage.getItem('tweetstormtext') : '', 
         queuedtweets:[],        
     },
     UIState: {
