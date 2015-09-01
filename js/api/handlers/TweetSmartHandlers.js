@@ -109,7 +109,7 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
                             
                         }
                     else{
-                        res.redirect('http://tweetsmart.in/login')
+                        res.redirect('http://api.tweetsmart.in/twitter/connect')
                     }
                     
                 }
