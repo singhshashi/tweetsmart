@@ -89,3 +89,8 @@ footer > div {
     background-color: aliceblue;
     padding: 20px;
     }
+
+#popup-footer{
+    margin-top: 25px;
+    background-color: aliceblue;
+}

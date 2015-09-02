@@ -8,6 +8,7 @@ var TweetButton = React.createClass({
     
         var signedIn = this.props.signedInSignature != null;
         var uiState = this.props.uiState;
+              
         if (signedIn === true)
             {
                 if (uiState === 'tweeting')
@@ -24,7 +25,11 @@ var TweetButton = React.createClass({
                             {
                                 setTimeout(TweetSmartActionCreator.refreshAfterSuccess, 3500);
                             }
-                        return(<div className="pull-right"><a className='btn btn-twitter' id='btnAction' onClick={this._onClick}>Tweet</a><p>{this.getStatusText()}</p></div>);
+                        return(
+                            <div className="pull-right">
+                                <a className='btn btn-twitter' id='btnAction' onClick={this._onClick}>Tweet</a>
+                                <p>{this.getStatusText()}</p>
+                            </div>);
                 }
                 
             }
