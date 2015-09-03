@@ -116,9 +116,7 @@ AppDispatcher.register(function(action){
     switch(action.actionType) {
         case TweetSmartActions.COMPOSE: 
             AppState.tweetstormtext = action.text;
-            console.log('AppState.tweetstormtext: '+ AppState.tweetstormtext);
             localStorage.setItem('tweetstormtext', AppState.tweetstormtext);
-            console.log('LocalStorage: ' + localStorage.getItem('tweetstormtext'));
             TweetSmartStore.emitChange();
             break;  
         case TweetSmartActions.QUEUE_TWEETSTORM:
@@ -149,8 +147,9 @@ AppDispatcher.register(function(action){
         case TweetSmartActions.TWEETSTORM_SUCCESS:
             UIState.composebox = true;
             UIState.tweetbutton = 'success';
-            AppState.tweetstormtext = '';
+            AppState.tweetstormtext = '';            
             AppState.queuedtweets = [];
+            localStorage.setItem('tweetstormtext', AppState.tweetstormtext);
             TweetSmartStore.emitChange();
             break;
         case TweetSmartActions.TWEETSTORM_FAILURE:
