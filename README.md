@@ -10,11 +10,10 @@ Possible enhancements roadmap:
 
 
 The following files need to be changed when changing the call back url:
-1. TweetSmartConstants
+1. TweetSmartConstants.js
 2. TweetButton.react.js
 
 
 
-License: 
 
-https://www.gnu.org/copyleft/lesser.html
+
