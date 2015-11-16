@@ -36,7 +36,6 @@ var TweetSmartApp = React.createClass({
     componentDidUpdate: function(prevProps, prevState)
     {
         if (this.state.appState.queuedtweets.length > 0){
-            console.log(this.state.appState.queuedtweets);
             var unsuccessfulTweet = _.find(this.state.appState.queuedtweets, function(queuedtweet){
                 return queuedtweet.status == -1;
             });

@@ -40,6 +40,13 @@ var Utils = {
             {
                 return neighbours;                
             }
+        
+        if (num < array[0] || num > array[arraySize - 1])
+            {
+                neighbours.leftSideNeighbour = null;
+                neighbours.rightSideNeighbour = null; 
+                return neighbours;
+            }
     
         if (num === array[0] && arraySize > 1)
             {                

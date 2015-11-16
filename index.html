@@ -18,7 +18,9 @@
    <nav class="navbar navbar-default navbar-static-top">
        <div class="container-fluid">
            <div class="navbar-header">              
-                <a href="/index.html" class="navbar-brand">TweetSmart</a>
+                <a href="/index.html" class="navbar-brand">
+                    <img src="images/logo_main.png" alt="TweetSmart" />
+                </a>
            </div>
 
        </div>
@@ -37,18 +39,18 @@
             </div>                                                  
         </section>
         <section id="intro-section" class="intro-section row">
-          <div class="col-md-3">
-              <h4>Auto-Saved Draft</h4>
-              <p>So that you can get back to it, in case of any interruption.</p>
-              <img alt="draft" src="images/tweetsmart-draft.png" class="ts-example-img" />
-          </div>
-           <div class="col-md-1"></div>
             <div class="col-md-3">
                 <h4>Number your Tweet Storms</h4>
                 <p>Don't spend your time wondering how many tweets will it take to make your point.</p> 
                 <img alt="tweetstorm" src="images/tw-ex-2.png" class="ts-example-img" />
             </div>
            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <h4>Tweets Appear Clubbed</h4>
+                <p>The numbered tweets are sent such that they appear clubbed on your follower's TL</p>
+                <img alt="draft" src="images/tweetsmart-draft.png" class="ts-example-img" />
+            </div>
+            <div class="col-md-1"></div>
             <div class="col-md-3">
                 <h4>Appear Smart to your Followers</h4>
                 <p>I was in awe of <a href="http://twitter.com/jp_loksatta">@JP_Loksatta</a> and how his Tweet Storms were always numbered. He did something which the average tweeter didn't.</p>
@@ -60,7 +62,6 @@
            <div class="col-md-4">
                 <h4>Possible Upcoming Features</h4>
                 <ul class="list-item">
-                    <li>Break Tweets before hitting the the character limit</li>
                     <li>Incorporating twitter shortened url</li>
                     <li>Uploading of images</li>
                     <li>Let me know of any other feature you may want <a href="https://twitter.com/intent/tweet?screen_name=tweetsmartdotin" class="twitter-mention-button" data-size="large" data-related="_singhshashi">Tweet to @tweetsmartdotin</a>
@@ -68,11 +69,11 @@
                 </ul>   
            </div>
             <div class="col-md-8 text-center">
-               <h4>Coming Soon on:</h4>
                <div class="row">
                     <div class="col-md-6 vcenter">
-                    <img alt="chromewebstore" src="images/chrome_web_store_logo-100029795-gallery.jpg" class="chromewebstoreicon" />
-                                                         <img alt="googleplay" src="images/android-app-on-google-play.png" class="playstoreicon" />
+
+                        <a href="https://chrome.google.com/webstore/detail/tweet-smart/cidmafpjjhaajnpfefgfpnnalhkepppf"><img
+                                alt="chromewebstore" src="images/ChromeWebStore_Badge_v2_340x96.png"/></a>                                                         <!--<img alt="googleplay" src="images/android-app-on-google-play.png" class="playstoreicon" />-->
 
                 </div>
                 
@@ -81,11 +82,14 @@
         </section>
         <section id="who-am-i-section" class="who-am-i-section row">
             <h4>Who made this and why?</h4>
-            
-            <p>Hi, I am Shashi (<a href="http://twitter.com/_singhshashi">@_singhshashi</a>) and I have programmed mostly on the Windows stack and wanted to get my hands dirty building something on Linux. Amongst the many other ideas that I had, this seemed like something which people would find useful. At the same time, it did not seem like a very big project and was also an opportunity to learn Reactjs, something which I wanted to do. </p>
-            
-            <p>The client side app is built using Flux, Reactjs and the server side api is built using expressjs. The source code of this project is available on <a href="http://github.com/singhshashi/tweetsmart">Github</a>. </p>
-            
+
+            <p>TweetSmart was conceptualized by <a href="http://twitter.com/_singhshashi">Shashi</a> when he came across tweet storms by
+                <a href="http://twitter.com/jp_loksatta">JP_LokSatta</a>. The tweet storms by <a
+                        href="http://twitter.com/jp_loksatta">JP_LokSatta</a> were always numbered perfectly. This was something which could not be done without some effort. Thus, this seemed like a perfect
+            use case to build something, when learning new technologies, that would be used by people.</p>
+
+            <p>The client side app and Chrome extension is built using Flux, Reactjs and the server side api is built using expressjs. The source code of part of this project is available on <a href="http://github.com/singhshashi/tweetsmart">Github</a>. </p>
+
         </section>
        <footer>
          <div class="row">
@@ -93,7 +97,6 @@
                  <p>To report a bug, suggest a feature or anything else:</p>
                  <p><a href="https://twitter.com/intent/tweet?screen_name=tweetsmartdotin" class="twitter-mention-button" data-size="large" data-related="_singhshashi">Tweet to @tweetsmartdotin</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> </p>
-                 <p>Email: <a href="mailto:#">tweetsmartin@yahoo.com</a>(checked less frequently)</p>   
             </div>
              <div class="col-md-6 text-right">
                  
