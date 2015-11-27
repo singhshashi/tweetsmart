@@ -24,12 +24,14 @@ var Header = React.createClass({
                             <a href="#" className="navbar-brand">
                               <img alt="TweetSmart" src="images/logo_main.png" />
                             </a>
-                            <span className="mod-navbar-toggle">
+                            <span className="mod-navbar-toggle visible-xs-block">
                                 <span className="navbar-text navbar-right">{signedInText} <a href="#" className="navbar-link" onClick={this.signOut}>{singOutLinkText}</a></span>
                             </span>
                         </div>
                         <div className="collapse navbar-collapse">
-                                <span className="navbar-text navbar-right">{signedInText} <a href="#" className="navbar-link" onClick={this.signOut}>{singOutLinkText}</a></span>
+                                <span className="mod-navbar-collapse">
+                                    <span className="navbar-text navbar-right">{signedInText} <a href="#" className="navbar-link" onClick={this.signOut}>{singOutLinkText}</a></span>
+                                </span>
                         </div>
                     </div>
                 </nav>
