@@ -47,7 +47,7 @@ var flutter = new Flutter({
             var sig = new Buffer(sigString).toString('base64');
             console.log(sig);
             client.set(sig.toString(),userDetails.userID.toString());
-            res.redirect('http://tweetsmart.local/popup.html?sig='+sig.toString());
+            res.redirect('http://tweetsmart.in/popup.html?sig='+sig.toString());
         }
 		
 	}
