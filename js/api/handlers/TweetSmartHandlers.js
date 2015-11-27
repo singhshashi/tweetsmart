@@ -40,9 +40,14 @@ var flutter = new Flutter({
            
             var ip = req.ip;
             
-            var sig = ip.split('.').reduce(function(previous,current,index,array){return (new Number(previous) + new Number(current))}) * userDetails.userID;
-            client.set(sig.toString(),userDetails.userID.toString());            
-            res.redirect('http://tweetsmart.in/popup.html?sig='+sig.toString());                 
+            var sigNumberIp = ip.split('.').reduce(function(previous,current,index,array){return (new Number(previous) + new Number(current))});
+            var sigNumberId = userDetails.userID;
+            var sigString = sigNumberIp.toString() + sigNumberId.toString();
+
+            var sig = new Buffer(sigString).toString('base64');
+            console.log(sig);
+            client.set(sig.toString(),userDetails.userID.toString());
+            res.redirect('http://tweetsmart.local/popup.html?sig='+sig.toString());
         }
 		
 	}
@@ -56,19 +61,69 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
         res.send('Winter is coming!');
     }, 
     
-    login: function(req,res,next){
-        res.status(501).send('Not implemented');
+    loggedin: function(req,res,next){
+        var sig = req.headers.sig;
+
+        if (!sig || sig === "")
+        {
+            res.status(500).send('Sig is invalid or empty');
+        }
+
+        client.get(sig.toString(), function (error, reply) {
+            if (reply != null)
+            {
+                var userId = new Number(reply);
+                if (Number.isNaN(userId))
+                {
+                    console.log("UserId from Redis is NaN");
+                    //res.status(500).send("UserId from Redis is NaN");
+                }
+                console.log("UserIdFromRedis:" + userId);
+                client.get(userId.toString(), function (error, reply) {
+                    if (reply != null)
+                    {
+                        var userObj = JSON.parse(reply);
+                        var response = {"userId":userObj.userId,"screenName":userObj.screenName, "sig":sig};
+                        res.status(200).send(response);
+
+                        return;
+
+                    }
+                    else{
+                        client.del(sig.toString());
+                        res.status(401).send('Not Logged In');
+                    }
+                });
+            }
+            else{
+                res.status(401).send("Sig not found");
+            }
+
+        });
+
         
-    }, 
+    },
+
+    signOut: function (req, res, next) {
+        var sig = req.headers.sig;
+        if (!sig || sig === "")
+        {
+            res.status(500).send('Sig is invalid or empty');
+        }
+        else{
+            client.del(sig.toString());
+            res.status(200).send("Logged out");
+        }
+
+
+    },
     
     tweetsmart: function(req,res,next) {
-        var sig = new Number(req.headers.sig);
-        var userID;
-        var message = '';
-        if(Number.isNaN(sig))
-            {
-                res.status(500).send('Sig is NaN');
-            }
+        var sig = req.headers.sig;
+        if (!sig || sig === "")
+        {
+            res.status(500).send('Sig is invalid or empty');
+        }
 
         client.get(sig.toString(), function(error,reply){          
             if (reply != null)

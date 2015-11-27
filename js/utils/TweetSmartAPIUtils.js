@@ -29,6 +29,58 @@ var TweetSmartAPIUtils = {
         });
        
         });
+    },
+
+    checkSignedIn: function(signature){
+
+        return new Promise(function(fulfill,reject){
+            request({
+                url:Constants.BASE_API_URL+'loggedin',
+                method:'GET',
+                json: true,
+                headers:{
+                    'sig':signature
+                }
+            }, function(error,response,body){
+                if (response.statusCode == 401)
+                {
+                    var err = {statusCode: response.statusCode, message: "Not Logged In"};
+                    reject(err);
+                }
+                else if (response.statusCode == 200){
+                    fulfill(body);
+                }
+                else{
+                    var err = {statusCode: response.statusCode, message: "Unknown Server Error"};
+                    reject(err);
+                }
+            });
+
+        });
+
+    },
+
+    signOut: function (signature) {
+
+        return new Promise(function (fulfill, reject) {
+            request({
+                url:Constants.BASE_API_URL+'signOut',
+                method:'DELETE',
+                json: true,
+                headers:{
+                    'sig':signature
+                }
+            }, function(error,response,body){
+                if (response.statusCode == 200){
+                    fulfill(body);
+                }
+                else{
+                    var err = {statusCode: response.statusCode, message: "Unknown Server Error"};
+                    reject(err);
+                }
+            });
+        });
+
     }
 }
 

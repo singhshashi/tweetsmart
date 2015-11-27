@@ -10,5 +10,8 @@ module.exports = keyMirror({
     TWEETSTORM_FAILURE:null,
     REFRESH_AFTER_SUCCESS: null,
     CHANGE_NUMBERING_POSITION: null,
-    DEMO_COMPOSE: null
+    DEMO_COMPOSE: null,
+    SIGN_IN:null,
+    SIGN_IN_COMPLETE:null,
+    SIGN_OUT:null
 });

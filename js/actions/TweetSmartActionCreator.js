@@ -11,6 +11,14 @@ var updateStateOnTweetFailed = function(data){
     AppDispatcher.dispatch({actionType:TweetSmartActions.TWEET_FAILURE});
 }
 
+var updateStateOnLoggedIn = function (data) {
+    AppDispatcher.dispatch({actionType:TweetSmartActions.SIGN_IN_COMPLETE,signedInTwitterUserId:data.userId,signedInScreenName:data.screenName, signedInSignature:data.sig})
+}
+
+var updateStateOnNotLoggedIn = function (data) {
+    AppDispatcher.dispatch({actionType:TweetSmartActions.SIGN_OUT});
+}
+
 var TweetSmartActionCreator = {
     
     compose: function(text){
@@ -38,7 +46,21 @@ var TweetSmartActionCreator = {
     tweetstormfailed: function(){
         
     },
-    
+
+    signIn: function(signature){
+        AppDispatcher.dispatch({actionType:TweetSmartActions.SIGN_IN});
+    },
+
+    checkSignedIn: function (signature) {
+        TweetSmartAPIUtils.checkSignedIn(signature).then(updateStateOnLoggedIn,updateStateOnNotLoggedIn);
+    },
+
+    signOut: function (signature) {
+        TweetSmartAPIUtils.signOut(signature);
+        AppDispatcher.dispatch({actionType:TweetSmartActions.SIGN_OUT});
+    },
+
+
     refreshAfterSuccess: function(){
         AppDispatcher.dispatch({actionType:TweetSmartActions.REFRESH_AFTER_SUCCESS});
     },
