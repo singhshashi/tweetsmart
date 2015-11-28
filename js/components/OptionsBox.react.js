@@ -8,13 +8,13 @@ var OptionsBox = React.createClass({
             <div>
                 <div className="radio">
                     <label>
-                        <input type="radio" name="radioNumberingPositionOptions" id="numberingPositionAtStart" value="1" onChange={this._onClick} checked={this.props.numberingPositionAtStart}  />
+                        <input type="radio" name="radioNumberingPositionOptions" id="numberingPositionAtStart" value="1" onChange={this._onClick} checked={this.props.numberingPositionAtStart == "true"}  />
                 Append numbering at the beginning of tweets
                     </label>
                 </div>
                 <div className="radio">
                     <label>
-                        <input type="radio" name="radioNumberingPositionOptions" id="numberingPositionAtEnd" value="0" onChange={this._onClick} checked={!this.props.numberingPositionAtStart} />
+                        <input type="radio" name="radioNumberingPositionOptions" id="numberingPositionAtEnd" value="0" onChange={this._onClick} checked={!(this.props.numberingPositionAtStart == "true")} />
                 Append numbering at the end of tweets
                     </label>
                 </div>
