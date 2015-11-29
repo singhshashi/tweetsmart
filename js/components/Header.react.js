@@ -22,7 +22,7 @@ var Header = React.createClass({
                     <div className="container-fluid">
                         <div className="navbar-header">
                             <a href="#" className="navbar-brand">
-                              <img alt="TweetSmart" src="images/logo_main.png" />
+                              <img alt="TweetSmart" src="images/logo_main_tmp.png" width="194px" height="33px" />
                             </a>
                             <span className="mod-navbar-toggle visible-xs-block">
                                 <span className="navbar-text navbar-right">{signedInText} <a href="#" className="navbar-link" onClick={this.signOut}>{singOutLinkText}</a></span>
