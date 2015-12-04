@@ -4,7 +4,7 @@ var TweetSmartConstants = require('../constants/TweetSmartConstants');
 var TweetSmartAPIUtils = require('../utils/TweetSmartAPIUtils');
 
 var updateStateOnTweetSuccess = function(data){
-    AppDispatcher.dispatch({actionType:TweetSmartActions.TWEET_SUCCESS});
+    AppDispatcher.dispatch({actionType:TweetSmartActions.TWEET_SUCCESS,lastSuccessfulTweetId:data.statusId});
 }
 
 var updateStateOnTweetFailed = function(data){
@@ -34,9 +34,8 @@ var TweetSmartActionCreator = {
         AppDispatcher.dispatch({actionType:TweetSmartActions.QUEUE_TWEETSTORM, tweetstorm: tweetstorm});
     },
     
-    tweet: function(tweet,signature){
-        AppDispatcher.dispatch({actionType:TweetSmartActions.TWEET, tweet:tweet})
-        TweetSmartAPIUtils.tweet(tweet,signature).then(updateStateOnTweetSuccess, updateStateOnTweetFailed);        
+    tweet: function(tweet,signature,lastSuccesfulTweetId){
+        TweetSmartAPIUtils.tweet(tweet,signature,lastSuccesfulTweetId).then(updateStateOnTweetSuccess, updateStateOnTweetFailed);
     },
     
     tweetstormsuccess: function(){

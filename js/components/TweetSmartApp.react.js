@@ -48,38 +48,35 @@ var TweetSmartApp = React.createClass({
     componentDidUpdate: function(prevProps, prevState)
     {
         var signature = TweetSmartStore.getSignedInSignature();
-        if (signature != null)
-        {
+        if (signature != null) {
             if (this.state.appState.signedIn == '0') {
                 TweetSmartActionCreator.checkSignedIn(signature);
             }
-        }
-        else {
-            if (this.state.appState.queuedTweets.length > 0){
-                var unsuccessfulTweet = _.find(this.state.appState.queuedTweets, function(queuedTweet){
-                    return queuedTweet.status == -1;
-                });
+            else {
+                if (this.state.appState.queuedTweets.length > 0) {
+                    var unsuccessfulTweet = _.find(this.state.appState.queuedTweets, function (queuedTweet) {
+                        return queuedTweet.status == -1;
+                    });
 
-                if (unsuccessfulTweet)
-                {
-                    console.log("Dominic Decoco");
-                    return;
-                }
+                    if (unsuccessfulTweet) {
+                        console.log("Dominic Decoco");
+                        return;
+                    }
 
-                var toTweet = _.find(this.state.appState.queuedTweets, function(queuedTweet){
-                    return queuedTweet.status == 0;
-                });
-                if (toTweet)
-                {
-                    var lastSuccessfulTweetId = this.state.appState.lastSuccessfulTweetId;
-                    TweetSmartActionCreator.tweet(toTweet,lastSuccessfulTweetId);
-                }
-                else{
-                    TweetSmartActionCreator.tweetstormsuccess();
+                    var toTweet = _.find(this.state.appState.queuedTweets, function (queuedTweet) {
+                        return queuedTweet.status == 0;
+                    });
+                    if (toTweet) {
+                        var lastSuccessfulTweetId = this.state.appState.lastSuccessfulTweetId;
+                        var signedInSignature = this.state.appState.signedInSignature;
+                        TweetSmartActionCreator.tweet(toTweet,signedInSignature, lastSuccessfulTweetId);
+                    }
+                    else {
+                        TweetSmartActionCreator.tweetstormsuccess();
+                    }
                 }
             }
         }
-
 
     },
 
@@ -95,7 +92,7 @@ var TweetSmartApp = React.createClass({
                         </div>
                     </form>
                     <DisplayTweets tweetStorm={this.state.tweetStorm} ref='displayTweets' />
-                    <TweetButton signedIn={this.state.appState.signedIn} uiState={this.state.uiState.tweetbutton} tweetStorm={this.state.tweetStorm} ref='tweetButton' />
+                    <TweetButton signedIn={this.state.appState.signedIn} uiState={this.state.uiState.tweetbutton} tweetStorm={this.state.tweetStorm} signedInSignature={this.state.appState.signedInSignature} ref='tweetButton' />
 
                     <br />
 

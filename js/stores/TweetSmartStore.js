@@ -84,8 +84,6 @@ var TweetSmartStore = assign({}, EventEmitter.prototype, {
 
     getTweetStorm: function(){
 
-        console.log("Inside getTweetStorm");
-        console.log(AppState);
         if (AppState.queuedTweets.length > 0)
         {
             return AppState.queuedTweets;
@@ -123,7 +121,6 @@ var TweetSmartStore = assign({}, EventEmitter.prototype, {
                 }
             }
             var totalTweets = tweetStorm.length;
-            console.log("TotalTweets:" + totalTweets);
             for(var i=0;i<tweetStorm.length;i++){
                 var tweet = tweetStorm[i].text.replace("!%iamtit%!",totalTweets);
                 tweetStorm[i].text = tweet;
@@ -149,8 +146,6 @@ AppDispatcher.register(function(action){
     switch(action.actionType) {
         case TweetSmartActions.COMPOSE:
             AppState.tweetStormText = action.text;
-            console.log("Compose:" + action.text);
-            console.log("AppState:" + AppState.tweetStormText);
             TweetSmartStore.emitChange();
             break;
         case TweetSmartActions.QUEUE_TWEETSTORM:

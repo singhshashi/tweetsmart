@@ -4,14 +4,15 @@ var _ = require('../../node_modules/underscore/underscore');
 
 var TweetSmartAPIUtils = {
     
-    tweet: function(tweet,signature){       
-        
+    tweet: function(tweet,signature,lastSuccesfulTweetId){
+
         return new Promise(function(fulfill,reject){
             request({
             url:Constants.BASE_API_URL+'tweetsmart', 
             method:'POST', 
             body:{
-                tweet: tweet
+                tweet: tweet,
+                in_reply_to:lastSuccesfulTweetId
             }, 
             json: true,
             headers:{

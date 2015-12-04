@@ -124,8 +124,7 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
         {
             res.status(500).send('Sig is invalid or empty');
         }
-
-        client.get(sig.toString(), function(error,reply){          
+        client.get(sig.toString(), function(error,reply){
             if (reply != null)
                 {
                     var userId = new Number(reply);
@@ -134,29 +133,36 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
                             console.log("UserId from redis in NaN");
                             throw "UserId from redis is NaN";    
                         }
-                        
-                    var sig2 = (req.ip.split('.').reduce(function(previous,current,index,array){ return (new Number(previous) + new Number(current))}) * userId);
+                    var ip = req.ip;
+
+                    var sigNumberIp = ip.split('.').reduce(function(previous,current,index,array){return (new Number(previous) + new Number(current))});
+                    var sigNumberId = userId;
+                    var sigString = sigNumberIp.toString() + sigNumberId.toString();
+
+                    var sig2 = new Buffer(sigString).toString('base64');
+
                     if (sig.toString() === sig2.toString())
                         {
 
-                            var tweet = req.body.tweet;                    
+                            var tweet = req.body.tweet;
+                            var in_reply_to = req.body.in_reply_to;
 //                            Get access token and secret for current user
                             client.get(userId.toString(), function(error,reply){
 //                                console.log(reply);
                                 var userDetailsCached = JSON.parse(reply);
                                 //The body parameter has to be an object as the underlying Oauth library expects so. 
-                                    var payload = {status: tweet.text};
+                                    var payload = {status: tweet.text,in_reply_to_status_id:in_reply_to};
                                     flutter.API.post('statuses/update.json', userDetailsCached.accessToken, userDetailsCached.secret, payload, 'application/x-www-form-urlencoded', function(resp){
                                         console.log(resp);
                                         if (resp.created_at){
-                                            res.send('Success!');
+                                            var data = {success:true,statusId:resp.id_str, message:resp.responseText}
+                                            res.send(data);
                                         }
                                         else{
                                             res.status(500).send("Failure!");
                                         }
                                         
-                                    } );                         
-
+                                    });
                             });
                             
                             
