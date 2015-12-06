@@ -25,6 +25,8 @@ var TweetSmartAPIUtils = {
                    reject(err)
                }
             else{
+               console.log("Tweet Api call success response");
+               console.log(body);
                 fulfill(body);
             }
         });

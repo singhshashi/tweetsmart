@@ -18,6 +18,11 @@ var OptionsBox = React.createClass({
                 Append numbering at the end of tweets
                     </label>
                 </div>
+                <a className="btn btn-default btn-xs" role="button" data-toggle="tooltip" data-placement="right" title="Clears any saved tweet storm! " href="#" onClick={this._reset}>
+                    <span className="glyphicon glyphicon-refresh"></span> Clear
+                </a>
+
+
             </div>
         );
     },
@@ -30,7 +35,10 @@ var OptionsBox = React.createClass({
         else{
             TweetSmartActionCreator.numberingpositionatstart(false);
         }
-        
+    },
+
+    _reset: function (event) {
+        TweetSmartActionCreator.reset();
     }
 });
 

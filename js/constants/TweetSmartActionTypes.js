@@ -13,5 +13,6 @@ module.exports = keyMirror({
     DEMO_COMPOSE: null,
     SIGN_IN:null,
     SIGN_IN_COMPLETE:null,
-    SIGN_OUT:null
+    SIGN_OUT:null,
+    RESET: null
 });

@@ -120,6 +120,7 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
     
     tweetsmart: function(req,res,next) {
         var sig = req.headers.sig;
+        console.log("Sig:" + sig);
         if (!sig || sig === "")
         {
             res.status(500).send('Sig is invalid or empty');
@@ -146,6 +147,7 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
 
                             var tweet = req.body.tweet;
                             var in_reply_to = req.body.in_reply_to;
+                            console.log("In Reply to: " + in_reply_to);
 //                            Get access token and secret for current user
                             client.get(userId.toString(), function(error,reply){
 //                                console.log(reply);

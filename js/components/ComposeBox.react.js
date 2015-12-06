@@ -7,14 +7,14 @@ var ComposeBox = React.createClass({
         {
             return(
                 <div className="form-group">
-                    <textarea className="form-control" rows="5" placeholder="Compose your tweet.." value={this.props.tweetStormText} disabled onChange={this.handleChange} />                 
+                    <textarea className="form-control" rows="5" placeholder="Compose your tweets.. To end a tweet and start a new tweet, press Enter twice and continue typing." value={this.props.tweetStormText} disabled onChange={this.handleChange} />
                 </div>
             );
         }
         
         return(
             <div className="form-group">
-                    <textarea className="form-control" rows="5" placeholder="Compose your tweet.." value={this.props.tweetStormText} onChange={this.handleChange} />                    
+                    <textarea className="form-control" rows="5" placeholder="Compose your tweets.. To end a tweet and start a new tweet, press Enter twice and continue typing." value={this.props.tweetStormText} onChange={this.handleChange} />
             </div>
         );
     }, 

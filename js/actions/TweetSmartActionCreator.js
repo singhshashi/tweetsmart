@@ -29,6 +29,10 @@ var TweetSmartActionCreator = {
     numberingpositionatstart:function(numberingpositionatstart){
       AppDispatcher.dispatch({actionType:TweetSmartActions.CHANGE_NUMBERING_POSITION, numberingpositionatstart: numberingpositionatstart});  
     },
+
+    reset: function () {
+      AppDispatcher.dispatch({actionType:TweetSmartActions.RESET})
+    },
     
     queuetweetstorm: function(tweetstorm){
         AppDispatcher.dispatch({actionType:TweetSmartActions.QUEUE_TWEETSTORM, tweetstorm: tweetstorm});

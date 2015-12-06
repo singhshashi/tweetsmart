@@ -48,12 +48,15 @@ var TweetSmartApp = React.createClass({
     componentDidUpdate: function(prevProps, prevState)
     {
         var signature = TweetSmartStore.getSignedInSignature();
-        if (signature != null) {
+        console.log('Signature' + signature);
+        if (signature != null && signature != '') {
             if (this.state.appState.signedIn == '0') {
                 TweetSmartActionCreator.checkSignedIn(signature);
             }
             else {
                 if (this.state.appState.queuedTweets.length > 0) {
+                    console.log("Has Queued Tweets");
+                    console.log(this.state.appState.queuedTweets);
                     var unsuccessfulTweet = _.find(this.state.appState.queuedTweets, function (queuedTweet) {
                         return queuedTweet.status == -1;
                     });

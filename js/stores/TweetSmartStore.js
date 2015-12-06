@@ -78,7 +78,7 @@ var TweetSmartStore = assign({}, EventEmitter.prototype, {
     getSignedInSignature: function(){
         var sig = Utils.getParameterByName('sig');
         if (sig === null || sig === '')
-            return null;
+            return AppState.signedInSignature;
         return sig;
     },
 
@@ -214,6 +214,11 @@ AppDispatcher.register(function(action){
             AppState.signedIn = -1;
             AppState.signedInScreenName = "";
             AppState.signedInTwitterUserId = -1;
+            TweetSmartStore.emitChange();
+            break;
+        case TweetSmartActions.RESET:
+            AppState.queuedTweets = [];
+            AppState.tweetStormText = '';
             TweetSmartStore.emitChange();
             break;
     }
