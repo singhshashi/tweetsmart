@@ -169,10 +169,12 @@ AppDispatcher.register(function(action){
             setTimeout(function(){TweetSmartStore.emitChange()}, 2100);
             break;
         case TweetSmartActions.TWEET_FAILURE:
-            var unsuccesfulTweet = _.find(AppState.queuedTweets, function(twt){
+            var queuedTweets = AppState.queuedTweets;
+            var unsuccesfulTweet = _.find(queuedTweets, function(twt){
                 return twt.status == 0;
             });
             unsuccesfulTweet.status = -1;
+            AppState.queuedTweets= queuedTweets;
             UIState.tweetbutton = 'failure';
             TweetSmartStore.emitChange();
             break;
