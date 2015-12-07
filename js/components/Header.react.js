@@ -15,29 +15,53 @@ var Header = React.createClass({
         {
             signedInText = "Signed In as " + this.props.signedInScreenName;
             singOutLinkText = "Sign out";
-        }
+
             return (
-            <div>
-                <nav className="navbar navbar-default navbar-static-top">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <a href="#" className="navbar-brand">
-                              <img alt="TweetSmart" src="images/logo_main_tmp.png" width="194px" height="33px" />
-                            </a>
-                            <span className="mod-navbar-toggle visible-xs-block">
-                                <span className="navbar-text navbar-right">{signedInText} <a href="#" className="navbar-link" onClick={this.signOut}>{singOutLinkText}</a></span>
-                            </span>
-                        </div>
-                        <div className="collapse navbar-collapse">
+                <div>
+                    <nav className="navbar navbar-default navbar-static-top">
+                        <div className="container-fluid">
+                            <div className="navbar-header">
+                                <a href="#" className="navbar-brand">
+                                    <img alt="TweetSmart" src="images/logo_main_tmp.png" width="194px" height="33px" />
+                                </a>
+                                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-navbar-collapse" aria-expanded="false">
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                </button>
+
+
+                            </div>
+                            <div className="collapse navbar-collapse" id="menu-navbar-collapse">
                                 <span className="mod-navbar-collapse">
                                     <span className="navbar-text navbar-right">{signedInText} <a href="#" className="navbar-link" onClick={this.signOut}>{singOutLinkText}</a></span>
                                 </span>
+                            </div>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
 
-            </div>
+                </div>
             );
+
+        }
+        else{
+            return (
+                <div>
+                    <nav className="navbar navbar-default navbar-static-top">
+                        <div className="container-fluid">
+                            <div className="navbar-header">
+                                <a href="#" className="navbar-brand">
+                                    <img alt="TweetSmart" src="images/logo_main_tmp.png" width="194px" height="33px" />
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+
+                </div>
+            );
+
+        }
+
     },
 
     signOut : function(evt){
