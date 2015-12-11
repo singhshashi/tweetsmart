@@ -3,7 +3,7 @@ var Routes = {
         api.get('/', handlers.apiRoot);
         api.get('/loggedin', handlers.loggedin);
         api.post('/tweetsmart', handlers.tweetsmart);
-        api.delete('/signout', handlers.signOut);
+        api.post('/signout', handlers.signOut);
         api.get('/twitter/connect', handlers.twitter.signIn);
         api.get('/twitter/callback', handlers.twitter.callback);
     }
