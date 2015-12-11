@@ -68,7 +68,7 @@ var TweetSmartAPIUtils = {
         return new Promise(function (fulfill, reject) {
             request({
                 url:Constants.BASE_API_URL+'signOut',
-                method:'DELETE',
+                method:'POST',
                 json: true,
                 headers:{
                     'sig':signature
