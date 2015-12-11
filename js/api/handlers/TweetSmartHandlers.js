@@ -172,7 +172,7 @@ var TweetSmartHandlers = assign({}, EventEmitter.prototype,{
                             
                         }
                     else{
-                        res.redirect('http://api.tweetsmart.in/twitter/connect')
+                        res.status(403).send('Unauthorized!');
                     }
                     
                 }
