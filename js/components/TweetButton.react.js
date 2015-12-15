@@ -16,7 +16,7 @@ var TweetButton = React.createClass({
                     {
                         return(
                                 <div className="pull-right">
-                                    <a className='btn btn-twitter' id='btnAction'>Tweeting...</a>
+                                    <button type="button" className='btn btn-twitter' id='btnAction'>Tweeting...</button>
                                     <img alt='loading...' src='../../images/ajax-loader.gif' />
                                 </div>                       
                         );
@@ -28,7 +28,7 @@ var TweetButton = React.createClass({
                             }
                         return(
                             <div className="pull-right">
-                                <a className='btn btn-twitter' id='btnAction' onClick={this._onClick}>Tweet</a>
+                                <button className='btn btn-twitter' id='btnAction' type="button" href="#" onClick={this._onClick}>Tweet</button>
                                 <p>{this.getStatusText()}</p>
                             </div>);
                 }
